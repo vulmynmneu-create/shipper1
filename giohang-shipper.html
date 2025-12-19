@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AN'H.VU Bakery - Giỏ hàng</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat Alternates', sans-serif;
+        }
+
+        body {
+            background-color: #FFF9E0; 
+            color: #333;
+        }
+
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        ul { list-style: none; }
+        img { width: 100%; display: block; }
+
+        
+        header { width: 100%; }
+
+        .top-bar {
+            background-color: #1e3d1a; /* Xanh rêu đậm */
+            color: #bbb;
+            font-size: 12px;
+            padding: 6px 10%;
+            display: flex;
+            justify-content: flex-end;
+            gap: 25px;
+        }
+
+        .main-nav {
+            background-color: #265220; /* Xanh rêu sáng hơn */
+            padding: 15px 10%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .nav-links li a {
+            color: white;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 14px;
+        }
+
+        .nav-links li a:hover, .nav-active {
+            color: #FFC107 !important; /* Màu vàng khi active */
+        }
+
+        .hero-banner {
+            background-image: linear-gradient(rgba(255, 0, 0, 0.237), rgba(251, 0, 0, 0.2)), url(header.jpg);            
+            background-size:cover;
+            background-position:center;
+            height: 300px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+        }
+
+        .hero-banner h1 {
+            font-size: 48px;
+            font-weight: 800;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .breadcrumb {
+            margin-top: 10px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+
+        /*4. NỘI DUNG CHÍNH */
+        .main-content {
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 0 20px;
+            background-color:#fffceb;
+        }
+
+        .page-title {
+            text-align: center;
+            color: #C62828; 
+            font-size: 38px;
+            font-weight: 800;
+            text-transform: uppercase;
+            margin-bottom: 40px;
+        }
+
+        .cart-layout {
+            display: flex;
+            gap: 50px;
+            align-items: flex-start;
+            border: 2px;
+            padding: 40px;
+            background-color:#F1E6B2;
+        }
+
+        /* CỘT TRÁI: DANH SÁCH SẢN PHẨM */
+        .cart-items-col {
+            flex: 1.2; /* Chiếm 60% */
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            position: relative;
+        }
+
+        .product-img {
+            width: 130px;
+            height: 130px;
+            border-radius: 10px;
+            object-fit: cover;
+            margin-right: 25px;
+            background-color: #eee;
+        }
+
+        .product-details {
+            flex: 1;
+        }
+
+        .product-name {
+            color: #388E3C; 
+            font-size: 22px;
+            font-weight: 800;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        .product-option {
+            font-size: 14px;
+            color: #555;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .size-badge {
+            background: #F1F8E9;
+            border: 1px solid #C5E1A5;
+            padding: 3px 10px;
+            border-radius: 20px;
+            color: #33691E;
+            margin-left: 5px;
+        }
+
+        /* Nút tăng giảm số lượng */
+        .qty-wrapper {
+            display: inline-flex;
+            align-items: center;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-left: 10px;
+            background: #f9f9f9;
+        }
+
+        .qty-btn {
+            width: 30px;
+            height: 25px;
+            border: none;
+            background: none;
+            cursor: pointer;
+            font-weight: bold;
+            color: #555;
+        }
+
+        .qty-val {
+            width: 30px;
+            text-align: center;
+            font-size: 14px;
+            font-weight: 600;
+            border-left: 1px solid #ddd;
+            border-right: 1px solid #ddd;
+        }
+
+        .product-price {
+            font-size: 20px;
+            font-weight: 800;
+            color: #2E7D32;
+            margin-top: 15px;
+        }
+
+        .cart-icon-action {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            font-size: 20px;
+            color: #999;
+            cursor: pointer;
+        }
+
+        /* CỘT PHẢI: FORM THÔNG TIN */
+        .cart-info-col {
+            font-family: 'Montserrat Alternates', sans-serif;
+            flex: 0.8; /* Chiếm 40% */
+
+
+        }
+
+        .info-group {
+            margin-bottom: 20px;
+            color:#388E3C;
+        }
+
+        .info-label {
+            display: block;
+            color: #388E3C; 
+            font-weight: 600;
+            font-size: 15px;
+            background: #FFFFFF;
+            border: none;
+            padding: 15px;
+            border-radius: 5px;
+        }
+
+        /*input nền trắng, chữ đậm */
+        .info-input {
+            font-family: 'Montserrat Alternates', sans-serif;
+            width: 100%;
+            background: #FFFFFF;
+            border: none;
+            padding: 15px;
+            border-radius: 5px;
+            font-size: 15px;
+            color: #388E3C;
+            font-weight: bold;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+        }
+
+        .info-input::placeholder {
+            color: #aaa;
+            font-weight: 400;
+        }
+
+        /* Tổng tiền box */
+        .total-wrapper {
+            background: #FFF;
+            padding: 15px;
+            text-align: center;
+            border-radius: 5px;
+            margin-top: 30px;
+            margin-bottom: 20px;
+        }
+
+        .total-text {
+            color: #D32F2F; 
+            font-weight: 800;
+            font-size: 20px;
+
+        }
+
+        /* Nút Đặt hàng */
+        .btn-checkout {
+            font-family: 'Montserrat Alternates', sans-serif;
+            width: 100%;
+            padding: 15px;
+            background-color: #558B2F; 
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            font-weight: 800;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .btn-checkout:hover {
+            background-color: #33691E;
+        }
+
+        /* Nút Xoá tất cả */
+        .btn-clear-all {
+            display: block;
+            margin: 40px auto 0;
+            background-color: #C62828; 
+            color: white;
+            border: none;
+            padding: 12px 35px;
+            border-radius: 5px;
+            font-weight: 700;
+            font-size: 16px;
+            cursor: pointer;
+            text-transform: uppercase;
+            font-family: 'Montserrat Alternates', sans-serif;
+
+        }
+        
+        .btn-clear-all:hover {
+            background-color: #B71C1C;
+        }
+
+        /* --- 5. FOOTER & FLOATING ICONS (Code của bạn) --- */
+        footer {
+            background-image: linear-gradient(rgba(255, 0, 0, 0.237), rgba(251, 0, 0, 0.2)), url(footer.jpeg);            
+            background-size: cover;
+            background-position: center;
+            color: #ddd;
+            padding-top: 50px;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            padding: 0 10% 40px 10%;
+            flex-wrap: wrap;
+        }
+
+        .footer-info h3 {
+            color: #fff;
+            margin-bottom: 15px;
+            font-size: 18px;
+            text-transform: uppercase;
+        }
+
+        .footer-info p {
+            margin-bottom: 10px;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+        
+        .footer-info i {
+            margin-right: 8px;
+        }
+
+        .footer-social h3 {
+            color: #fff;
+            margin-bottom: 15px;
+            font-size: 18px;
+            text-transform: uppercase;
+        }
+
+        .social-icons a {
+            font-size: 24px;
+            margin-right: 15px;
+            color: #fff;
+            border: 1px solid #fff;
+            padding: 8px;
+            border-radius: 5px;
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            text-align: center;
+            line-height: 22px;
+        }
+
+        .footer-bottom {
+            background-color: #fffceb;
+            color: #a83218;
+            text-align: center;
+            padding: 15px;
+            font-weight: 800;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+.floating-icons {
+            position: fixed;
+            right: 10px;
+            top: 40%;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .float-btn {
+            background: #C62828;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 18px;
+        }
+        
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="top-bar">
+            <span><i class="fas fa-phone-alt"></i> 1900632005</span>
+            <span><i class="fas fa-envelope"></i> ANHVU.BAKERY205@GMAIL.COM</span>
+            <span><i class="fas fa-user"></i> TÀI KHOẢN | 0đ <i class="fas fa-shopping-cart"></i></span>
+        </div>
+        <nav class="main-nav">
+            <ul class="nav-links">
+                <li><a href="trangchu-shipper.html">ANH'VU</a></li>
+                <li><a href="trangchu-shipper.html">Trang chủ</a></li>
+                <li><a href="uudai-shipper.html">Ưu đãi</a></li>
+                <li><a href="sanpham-shipper.html">Sản phẩm</a></li>
+                <li><a href="hoso-shipper.html">Tài khoản</a></li>
+                <li class="active"><a href="#" style="color: #f4c430;">Giỏ hàng</a></li>
+                <li><a href="lichsu-shipper.html">Đơn hàng</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero-banner">
+        <h1>GIỎ HÀNG</h1>
+        <div class="breadcrumb">TRANG CHỦ / GIỎ HÀNG</div>
+    </section>
+
+    <main class="main-content">
+        <h2 class="page-title">GIỎ HÀNG CỦA BẠN</h2>
+
+
+        <div class="cart-layout">
+            <div class="cart-items-col">
+                <div class="product-card">
+                    <img src="ohmydeer.jpg" alt="Cake" class="product-img"> <div class="product-details">
+                        <h3 class="product-name">OH MY DEER</h3>
+                        <div class="product-option">
+                            Size: <span class="size-badge">6cm x 6cm <i class="fas fa-chevron-down"></i></span>
+                        </div>
+                        <div class="product-option">
+                            Số lượng
+                            <div class="qty-wrapper">
+                                <button class="qty-btn">-</button>
+                                <div class="qty-val">02</div>
+                                <button class="qty-btn">+</button>
+                            </div>
+                        </div>
+                        <div class="product-price">350,000đ</div>
+                    </div>
+                    <span class="delete-icon"><i class="fas fa-trash-alt"></i></span>
+                </div>
+
+                <div class="product-card">
+                    <img src="hellosanta.jpg" alt="Cake" class="product-img"> <div class="product-details">
+                        <h3 class="product-name">HELLO SANTA</h3>
+                        <div class="product-option">
+                            Size: <span class="size-badge">6cm x 6cm <i class="fas fa-chevron-down"></i></span>
+                        </div>
+                        <div class="product-option">
+                            Số lượng
+                            <div class="qty-wrapper">
+                                <button class="qty-btn">-</button>
+                                <div class="qty-val">02</div>
+                                <button class="qty-btn">+</button>
+                            </div>
+                        </div>
+                        <div class="product-price">350,000đ</div>
+                    </div>
+                    <span class="delete-icon"><i class="fas fa-trash-alt"></i></span>
+                </div>
+            </div>
+
+            <div class="cart-info-col">
+                <div class="info-group">
+                    <input type="text" class="info-input" value="Nguyễn Văn An">
+                </div>
+
+                <div class="info-group">
+                    <label class="info-label">Địa chỉ nhận hàng</label>
+                    <input type="text" class="info-input" value="Số 5A, Đường Tân Triều, Thanh Trì">
+                </div>
+
+                <div class="info-group">
+                    <label class="info-label">SĐT nhận hàng</label>
+                    <input type="text" class="info-input" value="0879052007">
+                </div>
+
+                <div class="total-wrapper">
+                    <span class="total-text">Tổng tiền: 250.000đ</span>
+                </div>
+
+                <button class="btn-checkout">Đặt hàng</button>
+            </div>
+        </div>
+
+        <button class="btn-clear-all">Xoá tất cả</button>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-info">
+                <h3>AN'H.VU</h3>
+                <p><i class="fas fa-home"></i> 20 Ngô Quyền, Phường Tràng Tiền, Hà Nội</p>
+                <p><i></i> 67 Văn Cao, Phường Liễu Giai, Hà Nội</p>
+                <p><i></i> 58 Trung Hoà, Phường Trung Hoà, Hà Nội</p>
+                <p><i></i> 210 Ngụy Như Kon Tum, Phường Thanh Xuân Trung, Hà Nội</p>
+                <br>
+                <p><i class="fas fa-phone-alt"></i> PRE-ORDER: 1900632005</p>
+                <p><i class="fas fa-envelope"></i> ANHVU.BAKERY205@GMAIL.COM</p>
+            </div>
+            
+            <div class="footer-social">
+                <h3>Mạng xã hội</h3>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-tiktok"></i></a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            A PIECE OF CAKE, A PART OF WHOLE LIFE - BÁNH SẺ CHIA, TRỌN CUỘC SỐNG
+        </div>
+    </footer>
+    <div class="floating-icons">
+        <div class="float-btn"><i class="fas fa-chevron-up"></i></div>
+        <div class="float-btn"><i class="fas fa-phone-alt"></i></div>
+    </div>
+</body>
+</html>

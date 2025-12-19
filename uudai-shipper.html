@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AN'H.VU Bakery - ƯU ĐÃI</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat Alternates', sans-serif;
+        }
+
+        body {
+            background-color: #FFF9E0; 
+            color: #333;
+        }
+
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        ul { list-style: none; }
+        img { width: 100%; display: block; object-fit: cover; }
+
+       
+        header { width: 100%; }
+
+        .top-bar {
+            background-color: #1e3d1a; 
+            color: #bbb;
+            font-size: 12px;
+            padding: 6px 10%;
+            display: flex;
+            justify-content: flex-end;
+            gap: 25px;
+        }
+
+        .main-nav {
+            background-color: #265220; 
+            padding: 15px 10%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .nav-links li a {
+            color: white;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 14px;
+        }
+
+        .nav-links li a:hover, .nav-active {
+            color: #FFC107 !important;
+        }
+
+        .hero-banner {
+            background-image: linear-gradient(rgba(255, 0, 0, 0.237), rgba(251, 0, 0, 0.2)), url(header.jpg);            
+            background-size: cover;
+            background-position: center;
+            height: 300px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+        }
+
+        .hero-banner h1 {
+            font-size: 48px;
+            font-weight: 800;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .breadcrumb {
+            margin-top: 10px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        /* --- 3. CÁC NÚT ĐỎ TRÊN CÙNG --- */
+        .features-section {
+            max-width: 1100px;
+            margin: 40px auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 30px;
+            padding: 0 20px;
+        }
+
+        .feature-box {
+            background-color: #C62828; 
+            color: white;
+            padding: 15px;
+            text-align: center;
+            font-weight: 700;
+            text-transform: uppercase;
+            border-radius: 4px;
+            font-size: 14px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 60px;
+            line-height: 1.4;
+        }
+
+        
+        .section-title-promo {
+            text-align: center;
+            color: #C62828; 
+            font-size: 32px;
+            font-weight: 800;
+            text-transform: uppercase;
+            margin: 50px 0 30px;
+        }
+
+        /* --- 5. PHẦN 1: ƯU ĐÃI COMBO (3 Cột) --- */
+        .combo-grid {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            height: auto;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 30px;
+            padding: 50px 50px;
+            background-color: #F1E6B2;
+        }
+
+        .combo-card {
+            background-color: #558B2F; 
+            border-radius: 5px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .combo-card img {
+            height: 250px;
+            object-fit: cover;
+            width: 100%;
+        }
+
+        .combo-info {
+            padding: 10px;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 14px;
+        }
+
+        .price-tag {
+            font-size: 12px;
+            font-weight: 400;
+        }
+
+        /* --- 6. PHẦN 2: MIỄN PHÍ VẬN CHUYỂN (2 Cột) --- */
+        .shipping-grid {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            padding: 0 20px;
+        }
+
+        .shipping-card {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+
+        .shipping-title {
+            color: #558B2F;
+            font-weight: 800;
+            text-transform: uppercase;
+            font-size: 18px;
+            margin-bottom: 15px;
+            line-height: 1.4;
+        }
+
+        .shipping-img-wrap {
+            border-radius: 8px;
+            overflow: hidden;
+            height: 200px;
+            margin-bottom: 15px;
+        }
+
+        .shipping-note {
+            font-weight: 700;
+            font-size: 14px;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .shipping-icon { color: #558B2F; font-size: 20px; }
+
+        /* --- 7. PHẦN 3: ƯU ĐÃI THÀNH VIÊN (2 Cột x 2 Hàng) --- */
+        .member-grid {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            padding: 40px 40px 60px; 
+            background-color: #F1E6B2;
+        }
+
+        .member-card {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+
+        .member-text {
+            flex: 1;
+        }
+
+        .member-title {
+            color: #558B2F;
+            font-weight: 800;
+            text-transform: uppercase;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .member-desc {
+            font-size: 12px;
+            color: #666;
+            line-height: 1.5;
+            text-align: justify;
+        }
+
+        .member-img {
+            width: 120px;
+            height: 120px;
+            border-radius: 10px;
+            object-fit: cover;
+            flex-shrink: 0;
+        }
+
+        /* Nút Xem tất cả */
+        .btn-see-all {
+            display: block;
+            width: fit-content;
+            margin: 0 auto 60px;
+            background-color: #558B2F;
+            color: white;
+            margin-top: 20px; 
+            padding: 12px 40px;
+            font-weight: 700;
+            text-transform: uppercase;
+            border-radius: 4px;
+            cursor: pointer;
+            border: none;
+        }
+        
+        .btn-see-all:hover { background-color: #3e6b1f; }
+
+
+        /* --- FOOTER (GIỮ NGUYÊN) --- */
+        footer {
+            background-image: linear-gradient(rgba(255, 0, 0, 0.237), rgba(251, 0, 0, 0.2)), url(footer.jpeg);            
+            background-size: cover;
+            background-position: center;
+            color: #ddd;
+            padding-top: 50px;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            padding: 0 10% 40px 10%;
+            flex-wrap: wrap;
+        }
+
+        .footer-info h3, .footer-social h3 {
+            color: #fff;
+            margin-bottom: 15px;
+            font-size: 18px;
+            text-transform: uppercase;
+        }
+
+        .footer-info p {
+            margin-bottom: 10px;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+        
+        .footer-info i { margin-right: 8px; }
+
+        .social-icons a {
+            font-size: 24px;
+            margin-right: 15px;
+            color: #fff;
+            border: 1px solid #fff;
+            padding: 8px;
+            border-radius: 5px;
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            text-align: center;
+            line-height: 22px;
+        }
+
+        .footer-bottom {
+            background-color: #fffceb;
+            color: #a83218;
+            text-align: center;
+            padding: 15px;
+            font-weight: 800;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        
+        .floating-icons {
+            position: fixed;
+            right: 10px;
+            top: 40%;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .float-btn {
+            background: #C62828;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="top-bar">
+            <span><i class="fas fa-phone-alt"></i> 1900632005</span>
+            <span><i class="fas fa-envelope"></i> ANHVU.BAKERY205@GMAIL.COM</span>
+            <span><i class="fas fa-user"></i> TÀI KHOẢN | 0đ <i class="fas fa-shopping-cart"></i></span>
+        </div>
+        <nav class="main-nav">
+            <ul class="nav-links">
+                <li><a href="trangchu-shipper.html">ANH'VU</a></li>
+                <li><a href="trangchu-shipper.html">Trang chủ</a></li>
+                <li><a href="uudai-shipper.html" class="nav-active">Ưu đãi</a></li>
+                <li><a href="sanpham-shipper.html">Sản phẩm</a></li>
+                <li><a href="hoso-shipper.html">Tài khoản</a></li>
+                <li><a href="giohang-shipper.html">Giỏ hàng</a></li>
+                <li><a href="lichsu-shipper.html">Đơn hàng</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero-banner">
+        <h1>ƯU ĐÃI</h1>
+        <div class="breadcrumb">TRANG CHỦ / ƯU ĐÃI</div>
+    </section>
+
+    <section class="features-section">
+        <div class="feature-box">ƯU ĐÃI<br>COMBO</div>
+        <div class="feature-box">MIỄN PHÍ<br>VẬN CHUYỂN</div>
+        <div class="feature-box">ƯU ĐÃI<br>THẺ THÀNH VIÊN</div>
+    </section>
+
+    <h2 class="section-title-promo">ƯU ĐÃI KHI MUA COMBO</h2>
+    <div class="combo-grid">
+        <div class="combo-card">
+            <img src="merrybox.jpeg" alt="Combo Merry Box">
+            <div class="combo-info">
+                <span>COMBO "MERRY BOX"</span>
+                <span class="price-tag"style="text-decoration: line-through;">300k</span> </br>
+                 <span style="font-size: 16px;padding:10px;">215k</span></span>
+            </div>
+        </div>
+        <div class="combo-card">
+            <img src="02.jpg" alt="Combo Winter Wishes">
+            <div class="combo-info">
+                <span>COMBO "WINTER WISHES"</span>
+                <span class="price-tag" style="text-decoration: line-through;">300k </span>
+                <span style="font-size: 16px;padding:10px;">215k</span>
+            </div>
+        </div>
+        <div class="combo-card">
+            <img src="hellosanta.jpg" alt="Combo Festive Feast">
+            <div class="combo-info">
+                <span>COMBO "FESTIVE FEAST"</span>
+                <span class="price-tag" style="text-decoration: line-through;">300k</span>
+                 <span style="font-size: 16px;padding:10px;">215k</span>
+            </div>
+        </div>
+    </div>
+
+    <h2 class="section-title-promo">MIỄN PHÍ VẬN CHUYỂN</h2>
+    <div class="shipping-grid">
+        <div class="shipping-card">
+            <div class="shipping-title">MIỄN PHÍ VẬN CHUYỂN<br>BÁN KÍNH DƯỚI 5KM</div>
+            <div class="shipping-img-wrap">
+                <img src="freeship1.jpg" alt="Freeship 5km">
+            </div>
+            <div class="shipping-note">
+                Áp dụng: 20/10 - 20/12
+                <i class="fas fa-truck shipping-icon"></i>
+            </div>
+        </div>
+        <div class="shipping-card">
+            <div class="shipping-title">MIỄN PHÍ VẬN CHUYỂN<br>ĐƠN HÀNG TỪ 300K</div>
+            <div class="shipping-img-wrap">
+                <img src="freeship2.jpeg" alt="Freeship 300k">
+            </div>
+            <div class="shipping-note">
+                Áp dụng: 20/11 - 20/12
+                <i class="fas fa-truck shipping-icon"></i>
+            </div>
+        </div>
+    </div>
+
+    <h2 class="section-title-promo">ƯU ĐÃI THÀNH VIÊN</h2>
+    <div class="member-grid">
+        <div class="member-card">
+            <div class="member-text">
+                <div class="member-title">TÍCH ĐIỂM 5%</div>
+                <div class="member-desc">
+                    Tích lũy tự động 5% giá trị mỗi đơn hàng khi mua hàng thành công. Điểm tích lũy có thể dùng để thanh toán trực tiếp cho các lần mua tiếp theo (quy đổi: 1 điểm = 1.000 VNĐ).
+                </div>
+            </div>
+            <img src="dt.jpg" class="member-img" alt="Tích điểm">
+        </div>
+        <div class="member-card">
+            <div class="member-text">
+                <div class="member-title">GIẢM GIÁ TÙY CHỈNH</div>
+                <div class="member-desc">
+                    Thành viên Đặc biệt: Giảm ngay 10% tổng hóa đơn trong tháng sinh nhật. Thành viên Kim cương: Ưu đãi đặc quyền giảm 15% trọn đời và nhiều quà tặng hấp dẫn khác.
+                </div>
+            </div>
+            <img src="banh.jpeg" class="member-img" alt="Giảm giá">
+        </div>
+        <div class="member-card">
+            <div class="member-text">
+                <div class="member-title">BẢO HÀNH 1 ĐỔI 1</div>
+                <div class="member-desc">
+                    Áp dụng chính sách ĐỔI MỚI 1-1 miễn phí nếu bánh bị lỗi hỏng trong quá trình vận chuyển. Cam kết này giúp Khách hàng hoàn toàn an tâm trải nghiệm dịch vụ.
+                </div>
+            </div>
+            <img src="hop.jpeg" class="member-img" alt="Bảo hành">
+        </div>
+        <div class="member-card">
+            <div class="member-text">
+                <div class="member-title">MIỄN PHÍ SHIP NỘI THÀNH</div>
+                <div class="member-desc">
+                    Thành viên VIP được sử dụng chính sách FREESHIP (vận chuyển 0đ) cho hàng 10 đơn đầu tiên trong phạm vi nội thành Hà Nội. Tiết kiệm tối đa chi phí ship hàng tháng.
+                </div>
+            </div>
+            <img src="giay(1).jpg" class="member-img" alt="Freeship">
+        </div>
+    </div>
+
+    <button class="btn-see-all">XEM TẤT CẢ</button>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-info">
+                <h3>AN'H.VU</h3>
+                <p><i class="fas fa-home"></i> 20 Ngô Quyền, Phường Tràng Tiền, Hà Nội</p>
+                <p><i></i> 67 Văn Cao, Phường Liễu Giai, Hà Nội</p>
+                <p><i></i> 58 Trung Hoà, Phường Trung Hoà, Hà Nội</p>
+                <p><i></i> 210 Ngụy Như Kon Tum, Phường Thanh Xuân Trung, Hà Nội</p>
+                <br>
+                <p><i class="fas fa-phone-alt"></i> PRE-ORDER: 1900632005</p>
+                <p><i class="fas fa-envelope"></i> ANHVU.BAKERY205@GMAIL.COM</p>
+            </div>
+            
+            <div class="footer-social">
+                <h3>Mạng xã hội</h3>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-tiktok"></i></a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            A PIECE OF CAKE, A PART OF WHOLE LIFE - BÁNH SẺ CHIA, TRỌN CUỘC SỐNG
+        </div>
+    </footer>
+
+    <div class="floating-icons">
+        <div class="float-btn"><i class="fas fa-chevron-up"></i></div>
+        <div class="float-btn"><i class="fas fa-phone-alt"></i></div>
+    </div>
+
+</body>
+</html>

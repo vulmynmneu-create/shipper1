@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AN'H.VU Bakery - Sản phẩm</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- 1. CẤU HÌNH CƠ BẢN --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat Alternates', sans-serif;
+        }
+
+        body {
+            background-color: #fffbf0; /* Nền kem */
+            color: #333;
+        }
+
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        ul { list-style: none; }
+        img { width: 100%; display: block; object-fit: cover; }
+
+        /* --- 2. HEADER --- */
+        header { width: 100%; }
+
+        .top-bar {
+            background-color: #1e3d1a; 
+            color: #bbb;
+            font-size: 12px;
+            padding: 6px 10%;
+            display: flex;
+            justify-content: flex-end;
+            gap: 25px;
+        }
+
+        .main-nav {
+            background-color: #265220; 
+            padding: 15px 10%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .nav-links li a {
+            color: white;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 14px;
+        }
+
+        .nav-links li a:hover, .nav-active {
+            color: #f4c430 !important; /* Màu vàng khi active */
+        }
+
+        .hero-banner {
+            background-image: linear-gradient(rgba(255, 0, 0, 0.237), rgba(251, 0, 0, 0.2)), url(header.jpg);            
+            background-size: cover;
+            background-position: center;
+            height: 300px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+        }
+
+        .hero-banner h1 {
+            font-size: 48px;
+            font-weight: 800;
+            text-transform: uppercase;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .breadcrumb {
+            margin-top: 10px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        /* --- 3. THANH DANH MỤC ĐỎ (4 Nút) --- */
+        .category-bar {
+            max-width: 1100px;
+            margin: 40px auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            gap: 20px;
+            padding: 0 20px;
+        }
+
+        .cat-btn {
+            background-color: #C62828; /* Đỏ đậm */
+            color: white;
+            padding: 15px 10px;
+            text-align: center;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 14px;
+            border-radius: 4px;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: 0.3s;
+        }
+
+        .cat-btn:hover { background-color: #a31f1f; }
+
+        /* --- 4. STYLE CHUNG CHO CÁC PHẦN --- */
+        .section-container {
+            max-width: 1100px;
+            margin: 0 auto 60px;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            color: #C62828; 
+            font-size: 32px;
+            font-weight: 800;
+            text-transform: uppercase;
+            margin-bottom: 30px;
+        }
+
+        /* --- 5. STYLE THẺ SẢN PHẨM NGANG (Dùng cho Giáng Sinh & Bánh Lẻ) --- */
+        .grid-2-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            background-color:#F1E6B2;
+            padding: 50px 50px;
+        }
+
+        .product-card-horizontal {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .prod-info {
+            flex: 1;
+            padding-right: 15px;
+        }
+
+        .prod-name {
+            color: #558B2F; 
+            font-size: 18px;
+            font-weight: 800;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        .prod-desc {
+            font-size: 12px;
+            color: #777;
+            line-height: 1.4;
+            margin-bottom: 10px;
+            display: -webkit-box;
+            /* -webkit-line-clamp: 4; */
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .prod-price {
+            color: #558B2F;
+            font-weight: 800;
+            font-size: 16px;
+        }
+
+        .prod-img-wrap {
+            width: 140px;
+            height: 140px;
+            flex-shrink: 0;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        /* --- 6. STYLE THẺ SẢN PHẨM ĐỨNG (Dùng cho Bánh Sinh Nhật) --- */
+        .grid-3-col {
+            display: flex;
+            justify-content: center;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            max-width: 1100px;
+            transform: scale(1.1);
+            margin: 0 auto;
+            object-fit: cover;
+            
+            
+        }
+
+        .product-card-vertical {
+            position: relative;
+            border-radius: 5px;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .product-card-vertical img {
+            height: 250px;
+            transition: 0.3s;
+        }
+
+        .product-card-vertical:hover img { transform: scale(1.05); }
+
+        .prod-label {
+            background-color: #558B2F;
+            color: white;
+            text-align: center;
+            padding: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 14px;
+        }
+
+        /* Nút Xem chi tiết */
+        .btn-green-center {
+            display: block;
+            width: fit-content;
+            margin: 30px auto 0;
+            background-color: #558B2F;
+            color: white;
+            padding: 10px 30px;
+            font-weight: 700;
+            text-transform: uppercase;
+            border-radius: 4px;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn-green-center:hover { background-color: #3e6b1f; }
+        /* --- STYLE CHO PHẦN GIFTSET (Mới thêm) --- */
+.giftset-card {
+    background: white;
+    border-radius: 10px;
+    padding: 25px; /* Khoảng cách lề trong */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    display: flex;
+    flex-direction: column;
+}
+
+.gs-title {
+    color: #558B2F; /* Xanh lá */
+    font-size: 18px;
+    font-weight: 800;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+    line-height: 1.4;
+    text-align: left;
+}
+
+.gs-img {
+    border-radius: 8px;
+    height: 220px; /* Chiều cao ảnh cố định cho đều */
+    object-fit: cover;
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.gs-footer {
+    display: flex;
+    justify-content: space-between; /* Giá bên trái, Icon bên phải */
+    align-items: center;
+    margin-top: auto; /* Đẩy xuống đáy card */
+}
+
+.gs-price {
+    color: #558B2F;
+    font-weight: 800;
+    font-size: 18px;
+}
+
+.gs-icon {
+    color: #558B2F;
+    font-size: 20px;
+    border: 1px solid #558B2F;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+
+        /* --- FOOTER (Giữ nguyên) --- */
+        footer {
+            background-image: linear-gradient(rgba(255, 0, 0, 0.237), rgba(251, 0, 0, 0.2)), url(footer.jpeg);            
+            background-size: cover;
+            background-position: center;
+            color: #ddd;
+            padding-top: 50px;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            padding: 0 10% 40px 10%;
+            flex-wrap: wrap;
+        }
+
+        .footer-info h3 { color: white; margin-bottom: 15px; }
+        .footer-info p { margin-bottom: 10px; font-size: 13px; }
+        .footer-social h3 { color: white; margin-bottom: 15px; }
+        
+        .social-icons a {
+            font-size: 20px;
+            margin-right: 15px;
+            color: white;
+            border: 1px solid white;
+            padding: 8px;
+            border-radius: 5px;
+            display: inline-block;
+            width: 40px; text-align: center;
+        }
+
+        .footer-bottom {
+            background-color: #fffceb;
+            color: #a83218;
+            text-align: center;
+            padding: 15px;
+            font-weight: 800;
+            font-size: 14px;
+        }
+.floating-icons {
+            position: fixed;
+            right: 10px;
+            top: 40%;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .float-btn {
+            background: #C62828;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 18px;
+        }
+    
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="top-bar">
+            <span><i class="fas fa-phone-alt"></i> 1900632005</span>
+            <span><i class="fas fa-envelope"></i> ANHVU.BAKERY205@GMAIL.COM</span>
+            <span><i class="fas fa-user"></i> TÀI KHOẢN | 0đ <i class="fas fa-shopping-cart"></i></span>
+        </div>
+        <nav class="main-nav">
+            <ul class="nav-links">
+                <li><a href="trangchu-shipper.html">ANH'VU</a></li>
+                <li><a href="trangchu-shipper.html">Trang chủ</a></li>
+                <li><a href="uudai-shipper.html">Ưu đãi</a></li>
+                <li><a href="#" class="nav-active">Sản phẩm</a></li>
+                <li><a href="hoso-shipper.html">Tài khoản</a></li>
+                <li><a href="giohang-shipper.html">Giỏ hàng</a></li>
+                <li><a href="lichsu-shipper.html">Đơn hàng</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero-banner">
+        <h1>TẤT CẢ SẢN PHẨM</h1>
+        <div class="breadcrumb">TRANG CHỦ / SẢN PHẨM</div>
+    </section>
+
+    <section class="category-bar">
+        <div class="cat-btn">BST GIÁNG SINH</div>
+        <div class="cat-btn">BÁNH SINH NHẬT</div>
+        <div class="cat-btn">BÁNH LẺ</div>
+        <div class="cat-btn">GIFTSET</div>
+    </section>
+
+    <section class="section-container">
+        <h2 class="section-title">BST GIÁNG SINH 2025</h2>
+        
+        <div class="grid-2-col">
+            <div class="product-card-horizontal">
+                <div class="prod-info">
+                    <h3 class="prod-name">OH MY DEER</h3>
+                    <p class="prod-desc">Chiếc bánh nhỏ mang dáng hình chú tuần lộc đáng yêu. Hòa quyện giữa vị chua ngọt của xoài tươi và phô mai béo mịn.</p>
+                    <div class="prod-price">350,000đ</div>
+                </div>
+                <div class="prod-img-wrap"><img src="ohmydeer.jpg" alt="Bánh"></div>
+            </div>
+            <div class="product-card-horizontal">
+                <div class="prod-info">
+                    <h3 class="prod-name">HOLLY JOLLY</h3>
+                    <p class="prod-desc">Chiếc bánh lấy cảm hứng từ cây thông Noel, phủ lớp kem Matcha trà xanh thơm lừng.</p>
+                    <div class="prod-price">350,000đ</div>
+                </div>
+                <div class="prod-img-wrap"><img src="hollyjolly.jpg" alt="Bánh"></div>
+            </div>
+            <div class="product-card-horizontal">
+                <div class="prod-info">
+                    <h3 class="prod-name">HELLO SANTA</h3>
+                    <p class="prod-desc">Chiếc bánh lấy cảm hứng từ hình tượng ông già Noel, với lớp mousse socola mềm mịn.</p>
+                    <div class="prod-price">350,000đ</div>
+                </div>
+                <div class="prod-img-wrap"><img src="hellosanta.jpg" alt="Bánh"></div>
+            </div>
+            <div class="product-card-horizontal">
+                <div class="prod-info">
+                    <h3 class="prod-name">JOYFUL</h3>
+                    <p class="prod-desc">Chiếc bánh lấy cảm hứng từ người tuyết, với lớp kem phô mai Mascarpone béo ngậy.</p>
+                    <div class="prod-price">350,000đ</div>
+                </div>
+                <div class="prod-img-wrap"><img src="joyful.jpg" alt="Bánh"></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-container">
+        <h2 class="section-title">BÁNH SINH NHẬT</h2>
+        <div class="grid-3-col">
+            <div class="product-card-vertical">
+                <img src="merrybox.jpeg" alt="Bánh mẫu">
+                <div class="prod-label">BÁNH MẪU CÓ SẴN</div>
+            </div>
+            <div class="product-card-vertical">
+                <img src="02.jpg" alt="Bánh custom">
+                <div class="prod-label">BÁNH TỰ CUSTOM</div>
+            </div>
+            <div class="product-card-vertical">
+                <img src="hellosanta.jpg" alt="Bánh mini">
+                <div class="prod-label">BÁNH MINI</div>
+            </div>
+        </div>
+        <button class="btn-green-center">XEM CHI TIẾT</button>
+    </section>
+
+    <section class="section-container">
+        <h2 class="section-title">BÁNH LẺ</h2>
+        <div class="grid-2-col">
+            <div class="product-card-horizontal">
+                <div class="prod-info">
+                    <h3 class="prod-name">OH MY DEER</h3>
+                    <p class="prod-desc">Chiếc bánh nhỏ mang dáng hình chú tuần lộc đáng yêu, hòa quyện giữa vị chua ngọt của xoài tươi và phô mai béo mịn. Lớp mousse nhẹ nhàng cùng nhân hoa quả nhiệt đới tạo nên hương vị tươi mới, hoàn hảo cho mùa lễ hội Giáng Sinh.</p>
+                    <div class="prod-price">350,000đ</div>
+                </div>
+                <div class="prod-img-wrap"><img src="ohmydeer.jpg" alt="Bánh"></div>
+            </div>
+            <div class="product-card-horizontal">
+                <div class="prod-info">
+                    <h3 class="prod-name">HELLO SANTA</h3>
+                    <p class="prod-desc">Chiếc bánh lấy cảm hứng từ hình tượng ông già Noel đáng yêu, với lớp mousse socola mềm mịn, xen giữa bạt gato thơm và lớp phủ gương từ dark chocolate. Hương vị béo ngậy, ngọt vừa phải, mang trọn tinh thần ấm áp của mùa Giáng Sinh.</p>
+                    <div class="prod-price">350,000đ</div>
+                </div>
+                <div class="prod-img-wrap"><img src="hellosanta.jpg" alt="Bánh"></div>
+            </div>
+            <div class="product-card-horizontal">
+                <div class="prod-info">
+                    <h3 class="prod-name">JOYFUL</h3>
+                    <p class="prod-desc">Chiếc bánh lấy cảm hứng từ hình tượng Người Tuyết đáng yêu, với lớp kem phô mai Mascarpone béo ngậy bao trọn phần nhân mứt dâu tươi và cốt bánh cuộn vani mềm mịn. Hương vị ngọt dịu, mang trọn tinh thần ấm áp và tinh tế cho mùa lễ hội.</p>
+                    <div class="prod-price">350,000đ</div>
+                </div>
+                <div class="prod-img-wrap"><img src="joyful.jpg" alt="Bánh"></div>
+            </div>
+            <div class="product-card-horizontal">
+                <div class="prod-info">
+                    <h3 class="prod-name">HOLLY JOLLY</h3>
+                    <p class="prod-desc">Chiếc bánh lấy cảm hứng từ cây thông Noel, phủ phô mai mascarpone béo ngậy cùng lớp nhân caramel cà phê thơm lừng. Hương vị hòa quyện giữa vị ngọt dịu và đắng nhẹ, mang đến cảm giác ấm áp và tinh tế cho mùa lễ hội.</p>
+                    <div class="prod-price">350,000đ</div>
+                </div>
+                <div class="prod-img-wrap"><img src="hollyjolly.jpg" alt="Bánh"></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-container">
+        <h2 class="section-title">GIFTSET</h2>
+        
+        <div class="grid-3-col">
+            <div class="giftset-card">
+                <h3 class="gs-title">SET BÁNH<br>YÊU THƯƠNG ĐONG ĐẦY</h3>
+                <img src="freeship1.jpg" alt="Set bánh yêu thương" class="gs-img">
+                <div class="gs-footer">
+                    <span class="gs-price">400K</span>
+                    <i class="fas fa-shopping-bag gs-icon"></i>
+                </div>
+            </div>
+
+            <div class="giftset-card">
+                <h3 class="gs-title">SET BÁNH<br>TỰ CHỌN 6 VỊ</h3>
+                <img src="freeship2.jpeg" alt="Set bánh tự chọn" class="gs-img">
+                <div class="gs-footer">
+                    <span class="gs-price">450K</span>
+                    <i class="fas fa-shopping-bag gs-icon"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-info">
+                <h3>AN'H.VU</h3>
+                <p><i class="fas fa-home"></i> 20 Ngô Quyền, Phường Tràng Tiền, Hà Nội</p>
+                <p><i></i> 67 Văn Cao, Phường Liễu Giai, Hà Nội</p>
+                <p><i></i> 58 Trung Hoà, Phường Trung Hoà, Hà Nội</p>
+                <p><i></i> 210 Ngụy Như Kon Tum, Phường Thanh Xuân Trung, Hà Nội</p>
+                <br>
+                <p><i class="fas fa-phone-alt"></i> PRE-ORDER: 1900632005</p>
+                <p><i class="fas fa-envelope"></i> ANHVU.BAKERY205@GMAIL.COM</p>
+            </div>
+            
+            <div class="footer-social">
+                <h3>Mạng xã hội</h3>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-tiktok"></i></a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            A PIECE OF CAKE, A PART OF WHOLE LIFE - BÁNH SẺ CHIA, TRỌN CUỘC SỐNG
+        </div>
+    </footer>
+<div class="floating-icons">
+        <div class="float-btn"><i class="fas fa-chevron-up"></i></div>
+        <div class="float-btn"><i class="fas fa-phone-alt"></i></div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trang Chủ - AN'H.VU Bakery</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat Alternates', sans-serif;
+        }
+
+        body {
+            background-color: #FFF9E0; 
+            color: #333;
+        }
+
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        ul { list-style: none; }
+        img { width: 100%; display: block; }
+
+        /* --- 2. HEADER --- */
+        header { width: 100%; }
+
+        .top-bar {
+            background-color: #1e3d1a; /* Xanh rêu đậm */
+            color: #bbb;
+            font-size: 12px;
+            padding: 6px 10%;
+            display: flex;
+            justify-content: flex-end;
+            gap: 25px;
+        }
+
+        .main-nav {
+            background-color: #265220; /* Xanh rêu sáng hơn */
+            padding: 15px 10%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .nav-links li a {
+            color: white;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 14px;
+        }
+
+        .nav-links li a:hover, .nav-active {
+            color: #FFC107 !important; /* Màu vàng khi active */
+        }
+
+        /* --- 3. HERO BANNER --- */
+        .hero-banner {
+            width: 100%;
+            height: auto;
+            overflow: hidden;
+        }
+        
+        .hero-banner img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+        }
+
+        /* --- 4. SECTION: FEATURES (3 nút đỏ) --- */
+        .features-section {
+            max-width: 1100px;
+            margin: 40px auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 30px;
+            padding: 0 20px;
+        }
+
+        .feature-box {
+            background-color: #C62828; /* Màu đỏ */
+            color: white;
+            padding: 15px;
+            text-align: center;
+            font-weight: 700;
+            text-transform: uppercase;
+            border-radius: 4px;
+            font-size: 14px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            cursor: pointer;
+            display: flex; /* Căn giữa nội dung */
+            align-items: center;
+            justify-content: center;
+            min-height: 60px;
+            line-height: 1.4;
+        }
+
+        /* --- 5. SECTION: CATEGORIES (3 ảnh bánh) --- */
+        .categories-section {
+            max-width: 1100px;
+            margin: 40px auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 30px;
+            padding: 0 20px;
+        }
+
+        .cat-card {
+            position: relative;
+            cursor: pointer;
+            overflow: hidden;
+            border-radius: 5px;
+        }
+
+        .cat-card img {
+            transition: 0.5s;
+            height: 250px;
+            object-fit: cover;
+        }
+
+        .cat-card:hover img { transform: scale(1.05); }
+
+        .cat-label {
+            background-color: #558B2F; /* Xanh lá */
+            color: white;
+            text-align: center;
+            padding: 12px;
+            font-weight: 800;
+            text-transform: uppercase;
+            font-size: 16px;
+            width: 100%;
+        }
+
+        /* --- 6. SECTION: BEST SELLER --- */
+        .section-title {
+            text-align: center;
+            color: #C62828;
+            font-size: 36px;
+            font-weight: 800;
+            text-transform: uppercase;
+            margin: 50px 0 30px;
+            letter-spacing: 1px;
+        }
+
+        .best-seller-grid {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr; 
+            gap: 30px;
+            padding: 40px 100px;
+            background-color:#F1E6B2;
+        }
+
+        /* Thẻ sản phẩm nằm ngang */
+        .product-card-horizontal {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .prod-info {
+            flex: 1;
+            padding-right: 15px;
+        }
+
+        .prod-name {
+            color: #558B2F;
+            font-size: 20px;
+            font-weight: 800;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        .prod-desc {
+            font-size: 13px;
+            color: #777;
+            line-height: 1.5;
+            margin-bottom: 15px;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .prod-price {
+            color: #558B2F;
+            font-weight: 800;
+            font-size: 18px;
+        }
+
+        .prod-img-wrap {
+            width: 150px;
+            height: 150px;
+            flex-shrink: 0;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .prod-img-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Nút Xem tất cả */
+        .btn-see-all {
+            display: block;
+            width: fit-content;
+            margin: 40px auto;
+            background-color: #558B2F;
+            color: white;
+            padding: 12px 40px;
+            font-weight: 700;
+            text-transform: uppercase;
+            border-radius: 4px;
+        }
+        
+        .btn-see-all:hover { background-color: #3e6b1f; }
+
+        /* --- 7. SECTION: SANTA'S WORKSHOP --- */
+        .workshop-section {
+            margin-top: 60px;
+            text-align: center;
+            display:block;
+            
+        }
+
+        .workshop-img {
+            width: 70%;
+            height: auto;
+            object-fit: cover;
+            margin-top: 20px;
+            margin: 0 auto;
+            display:block;
+        }
+        .btn-green-style{
+    display: block;
+    margin: 50px auto;
+    width: fit-content;
+    background-color: #558B2F;
+    color: white;
+    padding: 12px 30px;
+    border: none;
+    border-radius: 5px;
+    font-weight: 700;
+    text-transform: uppercase;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: 0.3s;
+}
+        /* --- SECTION VỀ CHÚNG TÔI --- */
+.about-section {
+    max-width: 1200px;
+    margin: 60px auto;
+    padding: 0 20px;
+}
+
+.section-title {
+    text-align: center;
+    color: #C62828; 
+    font-size: 36px;
+    font-weight: 800;
+    text-transform: uppercase;
+    margin-bottom: 40px;
+}
+
+.about-container {
+    display: flex; 
+    gap: 50px;     
+    align-items: flex-start; 
+}
+
+/* Cột Ảnh (Bên trái) */
+.about-img-col {
+    flex: 1; 
+}
+
+.about-img {
+    width: 80%;
+    height: 400px;
+    border-radius: 10px;
+    object-fit: cover;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+/* Cột Chữ (Bên phải) */
+.about-text-col {
+    flex: 1.5; 
+    text-align: left; 
+}
+
+.about-heading {
+    color: #558B2F; 
+    font-size: 20px;
+    font-weight: 800;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    line-height: 1.4;
+}
+
+.about-subheading {
+    color: #558B2F;
+    font-size: 16px;
+    font-weight: 700;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.about-desc {
+    font-size: 14px;
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 15px;
+    text-align: justify; /* Căn đều 2 bên cho đẹp */
+}
+
+/* Nút Đọc thêm */
+.btn-read-more {
+    display: block;
+    margin: 50px auto;
+    width: fit-content;
+    background-color: #558B2F;
+    color: white;
+    padding: 12px 30px;
+    border: none;
+    border-radius: 5px;
+    font-weight: 700;
+    text-transform: uppercase;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: 0.3s;
+}
+
+.btn-read-more:hover {
+    background-color: #3e6b1f;
+}
+
+
+        
+
+        footer {
+            background-image: linear-gradient(rgba(255, 0, 0, 0.237), rgba(251, 0, 0, 0.2)), url(footer.jpeg);            
+            background-size: cover;
+            background-position: center;
+            color: #ddd;
+            padding-top: 50px;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            padding: 0 10% 40px 10%;
+            flex-wrap: wrap;
+        }
+
+        .footer-info h3 {
+            color: #fff;
+            margin-bottom: 15px;
+            font-size: 18px;
+            text-transform: uppercase;
+        }
+
+        .footer-info p {
+            margin-bottom: 10px;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+        
+        .footer-info i {
+            margin-right: 8px;
+        }
+
+        .footer-social h3 {
+            color: #fff;
+            margin-bottom: 15px;
+            font-size: 18px;
+            text-transform: uppercase;
+        }
+
+        .social-icons a {
+            font-size: 24px;
+            margin-right: 15px;
+            color: #fff;
+            border: 1px solid #fff;
+            padding: 8px;
+            border-radius: 5px;
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            text-align: center;
+            line-height: 22px;
+        }
+
+        .footer-bottom {
+            background-color: #fffceb;
+            color: #a83218;
+            text-align: center;
+            padding: 15px;
+            font-weight: 800;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .floating-icons {
+            position: fixed;
+            right: 10px;
+            top: 40%;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .float-btn {
+            background: #C62828;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="top-bar">
+            <span><i class="fas fa-phone-alt"></i> 1900632005</span>
+            <span><i class="fas fa-envelope"></i> ANHVU.BAKERY205@GMAIL.COM</span>
+            <span><i class="fas fa-user"></i> TÀI KHOẢN | 0đ <i class="fas fa-shopping-cart"></i></span>
+        </div>
+        <nav class="main-nav">
+            <ul class="nav-links">
+                <li><a href="trangchu-shipper.html">ANH'VU</a></li>
+                <li><a href="#" class="nav-active">Trang chủ</a></li>
+                <li><a href="uudai-shipper.html">Ưu đãi</a></li>
+                <li><a href="sanpham-shipper.html">Sản phẩm</a></li>
+                <li><a href="hoso-shipper.html">Tài khoản</a></li>
+                <li><a href="giohang-shipper.html">Giỏ hàng</a></li>
+                <li><a href="lichsu-shipper.html">Đơn hàng</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="hero-banner">
+        <img src="0.webp" alt="Christmas Banner">
+    </div>
+
+    <section class="features-section">
+        <div class="feature-box">HỆ THỐNG<br>CỬA HÀNG</div>
+        <div class="feature-box">MIỄN PHÍ<br>VẬN CHUYỂN</div>
+        <div class="feature-box">TÍCH ĐIỂM<br>THẺ THÀNH VIÊN</div>
+    </section>
+
+    <section class="categories-section">
+        <div class="cat-card">
+            <img src="01.jpg" alt="Bánh sinh nhật">
+            <div class="cat-label">BÁNH SINH NHẬT</div>
+        </div>
+        <div class="cat-card">
+            <img src="02.jpg" alt="Bánh lẻ">
+            <div class="cat-label">BÁNH LẺ</div>
+        </div>
+        <div class="cat-card">
+            <img src="hellosanta.jpg" alt="Giftset">
+            <div class="cat-label">GIFTSET</div>
+        </div>
+    </section>
+
+    <section class="best-seller-section">
+        <h2 class="section-title">BEST SELLER</h2>
+        
+        <div class="best-seller-grid">
+            <div class="product-card-horizontal">
+                <div class="prod-info">
+                    <h3 class="prod-name">OH MY DEER</h3>
+                    <p class="prod-desc">
+                        Chiếc bánh nhỏ mang dáng hình chú tuần lộc đáng yêu. Hòa quyện giữa vị chua ngọt của xoài tươi và phô mai béo mịn. Lớp mousse nhẹ nhàng cùng nhân hoa quả nhiệt đới tạo nên hương vị tươi mới.
+                    </p>
+                    <div class="prod-price">350,000đ</div>
+                </div>
+                <div class="prod-img-wrap">
+                    <img src="ohmydeer.jpg" alt="Oh My Deer">
+                </div>
+            </div>
+
+            <div class="product-card-horizontal">
+                <div class="prod-info">
+                    <h3 class="prod-name">HOLLY JOLLY</h3>
+                    <p class="prod-desc">
+                        Chiếc bánh lấy cảm hứng từ cây thông Noel, phủ phủ lớp kem Matcha trà xanh thơm lừng. Hương vị hòa quyện giữa vị ngọt dịu và đắng nhẹ.
+                    </p>
+                    <div class="prod-price">350,000đ</div>
+                </div>
+                <div class="prod-img-wrap">
+                    <img src="hollyjolly.jpg" alt="Holly Jolly">
+                </div>
+            </div>
+
+            <div class="product-card-horizontal">
+                <div class="prod-info">
+                    <h3 class="prod-name">HELLO SANTA</h3>
+                    <p class="prod-desc">
+                        Chiếc bánh lấy cảm hứng từ hình tượng ông già Noel đáng yêu, với lớp mousse socola mềm mịn, xen giữa bạt gato thơm và lớp phủ gương đỏ dark chocolate.
+                    </p>
+                    <div class="prod-price">350,000đ</div>
+                </div>
+                <div class="prod-img-wrap">
+                    <img src="hellosanta.jpg" alt="Hello Santa">
+                </div>
+            </div>
+
+            <div class="product-card-horizontal">
+                <div class="prod-info">
+                    <h3 class="prod-name">JOYFUL</h3>
+                    <p class="prod-desc">
+                        Chiếc bánh lấy cảm hứng từ hình tượng Người Tuyết đáng yêu, với lớp kem phô mai Mascarpone béo ngậy bao trọn phần nhân mứt dâu tươi và cốt bánh cuộn vani mềm mịn.
+                    </p>
+                    <div class="prod-price">350,000đ</div>
+                </div>
+                <div class="prod-img-wrap">
+                    <img src="joyful.jpg" alt="Joyful">
+                </div>
+            </div>
+        </div>
+
+        <a href="#" class="btn-see-all">XEM TẤT CẢ</a>
+    </section>
+
+    <section class="workshop-section">
+        <h2 class="section-title">SANTA'S WORKSHOP</h2>
+        <img src="big.png" alt="Santa Workshop" class="workshop-img">
+
+    </section>
+    <button class="btn-green-style">XEM CHI TIẾT</button>
+
+    <section class="about-section">
+    <h2 class="section-title">VỀ CHÚNG TÔI</h2>
+
+    <div class="about-container">
+        <div class="about-img-col">
+            <img src="08.webp" alt="Người làm bánh" class="about-img">
+        </div>
+
+        
+
+        <div class="about-text-col">
+            <h3 class="about-heading">
+                A PIECE OF CAKE, A PART OF WHOLE LIFE<br>
+                BÁNH SẺ CHIA, TRỌN CUỘC SỐNG
+            </h3>
+            
+            <h4 class="about-subheading">Nơi hội tụ tinh hoa Bánh ngọt hiện đại và Nghệ thuật cá nhân hóa</h4>
+            
+            <p class="about-desc">
+                An'hVu Bakery ra đời với niềm đam mê mang đến những chiếc bánh kem, bánh ngọt chất lượng cao, đậm đà hương vị truyền thống nhưng được thổi hồn bằng phong cách trang trí hiện đại, tinh tế.
+            </p>
+
+            <h4 class="about-subheading">Cùng sẻ chia và lưu giữ mọi khoảnh khắc đáng nhớ trong cuộc đời</h4>
+
+            <p class="about-desc">
+                Mỗi chiếc bánh của An'hVu là một vật phẩm của sự gắn kết. Nó không chỉ là món tráng miệng, mà là một phần của kỷ niệm.
+            </p>
+            <p class="about-desc">Mọi cột mốc đều đặc biệt, mọi trải nghiệm đều đáng nhớ, và An'hVu Bakery đã sẵn sàng cùng bạn tận hưởng "trọn cuộc sống" bằng những chiếc bánh ngọt được thiết kế riêng!
+            </p>
+
+            <button class="btn-read-more">ĐỌC THÊM</button>
+        </div>
+    </div>
+</section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-info">
+                <h3>AN'H.VU</h3>
+                <p><i class="fas fa-home"></i> 20 Ngô Quyền, Phường Tràng Tiền, Hà Nội</p>
+                <p><i></i> 67 Văn Cao, Phường Liễu Giai, Hà Nội</p>
+                <p><i></i> 58 Trung Hoà, Phường Trung Hoà, Hà Nội</p>
+                <p><i></i> 210 Ngụy Như Kon Tum, Phường Thanh Xuân Trung, Hà Nội</p>
+                <br>
+                <p><i class="fas fa-phone-alt"></i> PRE-ORDER: 1900632005</p>
+                <p><i class="fas fa-envelope"></i> ANHVU.BAKERY205@GMAIL.COM</p>
+            </div>
+            
+            <div class="footer-social">
+                <h3>Mạng xã hội</h3>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-tiktok"></i></a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            A PIECE OF CAKE, A PART OF WHOLE LIFE - BÁNH SẺ CHIA, TRỌN CUỘC SỐNG
+        </div>
+    </footer>
+<div class="floating-icons">
+        <div class="float-btn"><i class="fas fa-chevron-up"></i></div>
+        <div class="float-btn"><i class="fas fa-phone-alt"></i></div>
+    </div>
+</body>
+</html>

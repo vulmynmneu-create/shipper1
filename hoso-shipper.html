@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AN'H.VU Bakery - Hồ sơ</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat Alternates', sans-serif;
+        }
+
+        body {
+            background-color: #FFF9E0; 
+            color: #333;
+        }
+
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        ul { list-style: none; }
+        img { width: 100%; display: block; }
+
+        
+        header { width: 100%; }
+
+        .top-bar {
+            background-color: #1e3d1a; /* Xanh rêu đậm */
+            color: #bbb;
+            font-size: 12px;
+            padding: 6px 10%;
+            display: flex;
+            justify-content: flex-end;
+            gap: 25px;
+        }
+
+        .main-nav {
+            background-color: #265220; /* Xanh rêu sáng hơn */
+            padding: 15px 10%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .nav-links li a {
+            color: white;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 14px;
+        }
+
+        .nav-links li a:hover, .nav-active {
+            color: #FFC107 !important; /* Màu vàng khi active */
+        }
+
+        .hero-banner {
+            background-image: linear-gradient(rgba(255, 0, 0, 0.237), rgba(251, 0, 0, 0.2)), url(header.jpg);            
+            background-size:cover;
+            background-position:center;
+            height: 300px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+        }
+
+        .hero-banner h1 {
+            font-size: 48px;
+            font-weight: 800;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .breadcrumb {
+            margin-top: 10px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+
+        
+        .login-section {
+            background-color: #fffceb; 
+            padding: 50px 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .login-title {
+            color: #C62828; 
+            font-size: 38px;
+            font-weight: 800;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+        }
+
+        .form-box {
+            background-color: #efe8c8; 
+            padding: 40px;
+            width: 100%;
+            max-width: 500px;
+            /
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group p {
+            color: #4a7c43; 
+            text-align: left; 
+            background-color: #fff;
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+             
+}
+
+        .form-group input {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 4px;
+            font-size: 14px;
+            color: #555;
+            background-color: #fff;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            font-weight: bold;;
+        }
+
+        .form-group input::placeholder {
+            color: #4a7c43; 
+            opacity: 0.8;
+        }
+
+        .btn-login {
+            width: 150px;
+            padding: 12px;
+            background-color: #4a7c43; 
+            color: white;
+            border: none;
+            font-weight: 700;
+            font-size: 16px;
+            cursor: pointer;
+            margin: 0 auto;
+            display: block;
+            transition: background 0.3s;
+            font-family: 'Montserrat Alternates', sans-serif;
+
+        }
+
+        .btn-login:hover {
+            background-color: #366030;
+        }
+
+        .btn-logout {
+            width: 150px;
+            padding: 12px;
+            background-color: #a83218; 
+            color: white;
+            border: none;
+            font-weight: 700;
+            font-size: 16px;
+            cursor: pointer;
+            margin: 10px auto;
+            display: block;
+            transition: background 0.3s;
+            font-family: 'Montserrat Alternates', sans-serif;
+        }
+        .btn-logout:hover {
+            background-color: #671f0f;
+        }
+
+        /* .form-footer a {
+            margin: 0 5px;
+            display: block;
+            margin-bottom: 5px;
+        } */
+
+        /* .form-footer a:hover {
+            text-decoration: underline;
+        } */
+
+        footer {
+            background-image: linear-gradient(rgba(255, 0, 0, 0.237), rgba(251, 0, 0, 0.2)), url(footer.jpeg);            
+            background-size: cover;
+            background-position: center;
+            color: #ddd;
+            padding-top: 50px;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            padding: 0 10% 40px 10%;
+            flex-wrap: wrap;
+        }
+
+        .footer-info h3 {
+            color: #fff;
+            margin-bottom: 15px;
+            font-size: 18px;
+            text-transform: uppercase;
+        }
+
+        .footer-info p {
+            margin-bottom: 10px;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+        
+        .footer-info i {
+            margin-right: 8px;
+        }
+
+        .footer-social h3 {
+            color: #fff;
+            margin-bottom: 15px;
+            font-size: 18px;
+            text-transform: uppercase;
+        }
+
+        .social-icons a {
+            font-size: 24px;
+            margin-right: 15px;
+            color: #fff;
+            border: 1px solid #fff;
+            padding: 8px;
+            border-radius: 5px;
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            text-align: center;
+            line-height: 22px;
+        }
+
+        .footer-bottom {
+            background-color: #fffceb;
+            color: #a83218;
+            text-align: center;
+            padding: 15px;
+            font-weight: 800;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .floating-icons {
+            position: fixed;
+            right: 10px;
+            top: 40%;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .float-btn {
+            background: #C62828;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="top-bar">
+            <span><i class="fas fa-phone-alt"></i> 1900632005</span>
+            <span><i class="fas fa-envelope"></i> ANHVU.BAKERY205@GMAIL.COM</span>
+            <span><i class="fas fa-user"></i> TÀI KHOẢN | 0đ <i class="fas fa-shopping-cart"></i></span>
+        </div>
+        <nav class="main-nav">
+            <ul class="nav-links">
+                <li><a href="trangchu-shipper.html">ANH'VU</a></li>
+                <li><a href="trangchu-shipper.html">Trang chủ</a></li>
+                <li><a href="uudai-shipper.html">Ưu đãi</a></li>
+                <li><a href="sanpham-shipper.html">Sản phẩm</a></li>
+                <li class="active"><a href="#" style="color: #f4c430;">Tài khoản</a></li>
+                <li><a href="giohang-shipper.html">Giỏ hàng</a></li>
+                <li><a href="lichsu-shipper.html">Đơn hàng</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero-banner">
+        <h1>TÀI KHOẢN</h1>
+        <div class="breadcrumb">TRANG CHỦ / TÀI KHOẢN</div>
+    </section>
+
+    <main class="login-section">
+        <h2 class="login-title">HỒ SƠ CÁ NHÂN</h2>
+        
+        <div class="form-box">
+            <form action="#" method="POST">
+                <div class="form-group">
+                    <input type="text" placeholder="Nguyễn Văn An" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" placeholder="nguyenvanan@gmail.com" required>
+                </div>
+                <div class="form-group">
+                    <p>Địa chỉ nhận hàng</br></p>
+                    <input type="text" placeholder="Số 5a, đường Tân Triều, Thanh Trì" required>
+                </div>
+                <div class="form-group">
+                    <p>SĐT nhận hàng</br></p>
+                    <input type="tel" placeholder="0879052007" required>
+                </div>
+                <button type="submit" class="btn-login">Chỉnh sửa</button>
+            
+            </form>
+            <form action="AN'HVU.html">
+                <div class="form-footer">
+                    <button type="submit" class="btn-logout">Đăng xuất</button>
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-info">
+                <h3>AN'H.VU</h3>
+                <p><i class="fas fa-home"></i> 20 Ngô Quyền, Phường Tràng Tiền, Hà Nội</p>
+                <p><i></i> 67 Văn Cao, Phường Liễu Giai, Hà Nội</p>
+                <p><i></i> 58 Trung Hoà, Phường Trung Hoà, Hà Nội</p>
+                <p><i></i> 210 Ngụy Như Kon Tum, Phường Thanh Xuân Trung, Hà Nội</p>
+                <br>
+                <p><i class="fas fa-phone-alt"></i> PRE-ORDER: 1900632005</p>
+                <p><i class="fas fa-envelope"></i> ANHVU.BAKERY205@GMAIL.COM</p>
+            </div>
+            
+            <div class="footer-social">
+                <h3>Mạng xã hội</h3>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-tiktok"></i></a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            A PIECE OF CAKE, A PART OF WHOLE LIFE - BÁNH SẺ CHIA, TRỌN CUỘC SỐNG
+        </div>
+    </footer>
+<div class="floating-icons">
+        <div class="float-btn"><i class="fas fa-chevron-up"></i></div>
+        <div class="float-btn"><i class="fas fa-phone-alt"></i></div>
+    </div>
+</body>
+</html>

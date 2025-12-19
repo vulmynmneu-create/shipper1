@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AN'H.VU Bakery - Lịch sử</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+       * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat Alternates', sans-serif;
+        }
+
+        body {
+            background-color: #FFF9E0; 
+            color: #333;
+        }
+
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        ul { list-style: none; }
+        img { width: 100%; display: block; }
+
+        
+        header { width: 100%; }
+
+        .top-bar {
+            background-color: #1e3d1a; /* Xanh rêu đậm */
+            color: #bbb;
+            font-size: 12px;
+            padding: 6px 10%;
+            display: flex;
+            justify-content: flex-end;
+            gap: 25px;
+        }
+
+        .main-nav {
+            background-color: #265220; /* Xanh rêu sáng hơn */
+            padding: 15px 10%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .nav-links li a {
+            color: white;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 14px;
+        }
+
+        .nav-links li a:hover, .nav-active {
+            color: #FFC107 !important; /* Màu vàng khi active */
+        }
+
+        .hero-banner {
+            background-image: linear-gradient(rgba(255, 0, 0, 0.237), rgba(251, 0, 0, 0.2)), url(header.jpg);            
+            background-size:cover;
+            background-position:center;
+            height: 300px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+        }
+
+        .hero-banner h1 {
+            font-size: 48px;
+            font-weight: 800;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .breadcrumb {
+            margin-top: 10px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        /* --- 4. MAIN CONTENT: LỊCH SỬ --- */
+        .history-section {
+            max-width: 900px; /* Thu hẹp lại một chút cho giống ảnh */
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .page-title {
+            text-align: center;
+            color: #C62828; 
+            font-size: 36px;
+            font-weight: 800;
+            text-transform: uppercase;
+            margin-bottom: 40px;
+        }
+
+        /* Danh sách thẻ lịch sử */
+        .history-list {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            background-color: #F1E6B2;
+            padding: 50px 50px;
+        }
+
+        .history-card {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+
+        .card-img {
+            width: 140px;
+            height: 140px;
+            border-radius: 10px;
+            object-fit: cover;
+            margin-right: 25px;
+            background-color: #eee;
+        }
+
+        .card-info {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        /* Dòng tiêu đề tên bánh */
+        .info-row-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .item-name {
+            color: #388E3C;
+            font-size: 22px;
+            font-weight: 800;
+            text-transform: uppercase;
+        }
+
+        .item-qty {
+            font-size: 14px;
+            color: #777;
+            font-weight: 600;
+        }
+
+        .item-size {
+            font-size: 14px;
+            color: #999;
+            font-style: italic;
+        }
+
+        /* Dòng giá tiền */
+        .info-row-price {
+            display: flex;
+            justify-content: flex-end; /* Căn phải */
+            align-items: center;
+            gap: 10px;
+            margin-top: 5px;
+        }
+
+        .price-label { font-size: 14px; color: #555; }
+        .price-value { font-size: 18px; font-weight: 800; color: #388E3C; }
+
+        /* Dòng trạng thái (Badge) */
+        .info-row-status {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 5px;
+        }
+
+        .status-badge {
+            padding: 4px 15px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        /* Các màu trạng thái */
+        .status-pending { background-color: #FFF3E0; color: #E65100; } /* Chờ xác nhận - Cam nhạt */
+        .status-shipping { background-color: #FFF9C4; color: #FBC02D; } /* Đang giao - Vàng */
+        .status-done { background-color: #E8F5E9; color: #388E3C; } /* Hoàn thành - Xanh lá */
+
+        /* Dòng nút bấm (Buttons) */
+        .info-row-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .btn-action {
+            padding: 8px 20px;
+            border-radius: 5px;
+            font-weight: 700;
+            font-size: 13px;
+            cursor: pointer;
+            border: none;
+            transition: 0.3s;
+            text-transform: uppercase;
+        }
+
+        /* Nút màu đỏ (Huỷ đơn, Đặt lại) */
+        .btn-red { background-color: #C62828; color: white; }
+        .btn-red:hover { background-color: #B71C1C; }
+
+        /* Nút màu xanh (Xem chi tiết) */
+        .btn-green { background-color: #388E3C; color: white; }
+        .btn-green:hover { background-color: #2E7D32; }
+
+
+        footer {
+            background-image: linear-gradient(rgba(255, 0, 0, 0.237), rgba(251, 0, 0, 0.2)), url(footer.jpeg);            
+            background-size: cover;
+            background-position: center;
+            color: #ddd;
+            padding-top: 50px;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            padding: 0 10% 40px 10%;
+            flex-wrap: wrap;
+        }
+
+        .footer-info h3 {
+            color: #fff;
+            margin-bottom: 15px;
+            font-size: 18px;
+            text-transform: uppercase;
+        }
+
+        .footer-info p {
+            margin-bottom: 10px;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+        
+        .footer-info i {
+            margin-right: 8px;
+        }
+
+        .footer-social h3 {
+            color: #fff;
+            margin-bottom: 15px;
+            font-size: 18px;
+            text-transform: uppercase;
+        }
+
+        .social-icons a {
+            font-size: 24px;
+            margin-right: 15px;
+            color: #fff;
+            border: 1px solid #fff;
+            padding: 8px;
+            border-radius: 5px;
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            text-align: center;
+            line-height: 22px;
+        }
+
+        .footer-bottom {
+            background-color: #fffceb;
+            color: #a83218;
+            text-align: center;
+            padding: 15px;
+            font-weight: 800;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+.floating-icons {
+            position: fixed;
+            right: 10px;
+            top: 40%;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .float-btn {
+            background: #C62828;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="top-bar">
+            <span><i class="fas fa-phone-alt"></i> 1900632005</span>
+            <span><i class="fas fa-envelope"></i> ANHVU.BAKERY205@GMAIL.COM</span>
+            <span><i class="fas fa-user"></i> TÀI KHOẢN | 0đ <i class="fas fa-shopping-cart"></i></span>
+        </div>
+        <nav class="main-nav">
+            <ul class="nav-links">
+                <li><a href="trangchu-shipper.html">ANH'VU</a></li>
+                <li><a href="trangchu-shipper.html">Trang chủ</a></li>
+                <li><a href="uudai-shipper.html">Ưu đãi</a></li>
+                <li><a href="sanpham-shipper.html">Sản phẩm</a></li>
+                <li><a href="hoso-shipper.html">Tài khoản</a></li>
+                <li><a href="giohang-shipper.html">Giỏ hàng</a></li>
+                <li class="active"><a href="#" style="color: #f4c430;">Đơn hàng</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero-banner">
+        <h1>LỊCH SỬ</h1>
+        <div class="breadcrumb">TRANG CHỦ / LỊCH SỬ</div>
+    </section>
+
+    <section class="history-section">
+        <h2 class="page-title">LỊCH SỬ MUA HÀNG</h2>
+
+        <div class="history-list">
+            
+            <div class="history-card">
+                <img src="ohmydeer.jpg" alt="Bánh" class="card-img">
+                <div class="card-info">
+                    <div class="info-row-top">
+                        <h3 class="item-name">OH MY DEER</h3>
+                        <span class="item-qty">x2</span>
+                    </div>
+                    <div class="item-size">6cm x 6cm</div>
+                    
+                    <div class="info-row-price">
+                        <span class="price-label">Tổng tiền (2 sản phẩm):</span>
+                        <span class="price-value">350,000đ</span>
+                    </div>
+
+                    <div class="info-row-status">
+                        <span class="status-badge status-pending">Trạng thái: Đã chuẩn bị</span>
+                    </div>
+
+                    <div class="info-row-actions">
+                    <button class="btn-action btn-red">Nhận đơn</button>
+                    <button class="btn-action btn-green" onclick="window.location.href='choxacnhan.html'">Xem chi tiết</button>                   
+                 </div>
+                </div>
+            </div>
+
+            <div class="history-card">
+                <img src="ohmydeer.jpg" alt="Bánh" class="card-img">
+                <div class="card-info">
+                    <div class="info-row-top">
+                        <h3 class="item-name">OH MY DEER</h3>
+                        <span class="item-qty">x2</span>
+                    </div>
+                    <div class="item-size">6cm x 6cm</div>
+                    
+                    <div class="info-row-price">
+                        <span class="price-label">Tổng tiền (2 sản phẩm):</span>
+                        <span class="price-value">350,000đ</span>
+                    </div>
+
+                    <div class="info-row-status">
+                        <span class="status-badge status-shipping">Trạng thái: Đang giao</span>
+                    </div>
+
+                    <div class="info-row-actions">
+                        <button class="btn-action btn-red">Liên hệ</button>
+                    <button class="btn-action btn-green" onclick="window.location.href='danggiao-shipper.html'">Xem chi tiết</button>                    </div>
+                </div>
+            </div>
+
+            <div class="history-card">
+                <img src="ohmydeer.jpg" alt="Bánh" class="card-img">
+                <div class="card-info">
+                    <div class="info-row-top">
+                        <h3 class="item-name">OH MY DEER</h3>
+                        <span class="item-qty">x2</span>
+                    </div>
+                    <div class="item-size">6cm x 6cm</div>
+                    
+                    <div class="info-row-price">
+                        <span class="price-label">Tổng tiền (2 sản phẩm):</span>
+                        <span class="price-value">350,000đ</span>
+                    </div>
+
+                    <div class="info-row-status">
+                        <span class="status-badge status-done">Trạng thái: Hoàn thành</span>
+                    </div>
+
+                    <div class="info-row-actions">
+                    
+                    <button class="btn-action btn-green" onclick="window.location.href='hoanthanh-shipper.html'">Xem chi tiết</button>                    </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-info">
+                <h3>AN'H.VU</h3>
+                <p><i class="fas fa-home"></i> 20 Ngô Quyền, Phường Tràng Tiền, Hà Nội</p>
+                <p><i></i> 67 Văn Cao, Phường Liễu Giai, Hà Nội</p>
+                <p><i></i> 58 Trung Hoà, Phường Trung Hoà, Hà Nội</p>
+                <p><i></i> 210 Ngụy Như Kon Tum, Hà Nội</p>
+                <br>
+                <p><i class="fas fa-phone-alt"></i> PRE-ORDER: 1900632005</p>
+                <p><i class="fas fa-envelope"></i> ANHVU.BAKERY205@GMAIL.COM</p>
+            </div>
+            <div class="footer-social">
+                <h3>Mạng xã hội</h3>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-tiktok"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">A PIECE OF CAKE, A PART OF WHOLE LIFE - BÁNH SẺ CHIA, TRỌN CUỘC SỐNG</div>
+    </footer>
+
+    <div class="floating-icons">
+        <div class="float-btn"><i class="fas fa-chevron-up"></i></div>
+        <div class="float-btn"><i class="fas fa-phone-alt"></i></div>
+    </div>
+
+</body>
+</html>
